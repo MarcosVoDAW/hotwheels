@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registrarse al Garaje
+{% endblock %}
+
+{% block body %}
+	<section class="book_section layout_padding">
+		<div class="container">
+			<div class="heading_container">
+				<h2>Únete al Garaje</h2>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form_container">
+
+						{% if error %}
+							<div class="alert alert-danger" style="background-color: #ff4d4d; color: white; border: none; border-radius: 5px; padding: 10px; margin-bottom: 20px;">
+								{{ error }}
+							</div>
+						{% endif %}
+
+						<form action="{{ path('app_register') }}" method="POST">
+							<div>
+								<input type="text" name="username" class="form-control" placeholder="Nombre de usuario (Ej: Toretto)" required/>
+							</div>
+							<div>
+								<input type="email" name="email" class="form-control" placeholder="Correo electrónico" required/>
+							</div>
+							<div>
+								<input type="password" name="password" class="form-control" placeholder="Contraseña segura" required/>
+							</div>
+
+							<div style="display: flex; gap: 15px; align-items: center; margin-top: 20px; margin-bottom: 20px;">
+								<input type="text" name="captcha" class="form-control" placeholder="Introduce el número" required style="width: 60%; margin-bottom: 0;"/>
+								<img src="{{ path('app_captcha') }}" alt="Código de seguridad" style="border-radius: 5px; height: 40px;">
+							</div>
+
+							<div class="btn_box">
+								<button type="submit" style="background-color: #ffbe33; color: white; border-radius: 45px; padding: 10px 45px; border: none; cursor: pointer;">
+									Crear cuenta
+								</button>
+							</div>
+						</form>
+
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="map_container" style="display: flex; align-items: center; justify-content: center;">
+						<img src="{{ asset('images/about-img.png') }}" alt="Coche Garaje" style="width: 80%; border-radius: 10px;">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
