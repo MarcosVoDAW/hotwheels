@@ -35,9 +35,8 @@
 								<li class="nav-item">
 									<a class="nav-link" href="{{ path('app_circuito_index') }}">Circuito</a>
 								</li>
-
-								{# Forzamos a Twig a despertar la sesión con getSession() #}
-								{% if app.request.getSession().get('usuario_id') %}
+								{# Comprobamos primero si hay sesión para que no explote #}
+								{% if app.request.hasSession() and app.request.session.get('usuario_id') %}
 									<li class="nav-item">
 										<a class="nav-link" href="#">Mis Coches</a>
 									</li>
@@ -48,7 +47,7 @@
 										<a class="nav-link" href="#">Perfil</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="{{ path('app_logout') }}">Cerrar sesión ({{ app.request.getSession().get('usuario_nombre') }})</a>
+										<a class="nav-link" href="{{ path('app_logout') }}">Cerrar sesión ({{ app.request.session.get('usuario_nombre') }})</a>
 									</li>
 								{% else %}
 									<li class="nav-item">
